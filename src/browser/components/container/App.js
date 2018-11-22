@@ -15,13 +15,19 @@ class App extends Component {
     this.state = {
       data
     };
+
+    this.handleAlert = this.handleAlert.bind(this);
+  }
+
+  handleAlert() {
+    alert("Hooray! You clicked the div!");
   }
 
   render() {
     const { data } = this.state;
     console.log("github data -->", data);
 
-    return <div>Hello world!</div>;
+    return <div onClick={this.handleAlert}>Click me!</div>;
   }
 }
 
