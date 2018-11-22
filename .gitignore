@@ -2,6 +2,7 @@ node_modules
 .DS_Store
 public
 server.min.js
+images
 
 # Logs
 logs

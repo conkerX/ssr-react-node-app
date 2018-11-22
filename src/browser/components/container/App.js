@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import imageHome from "../../images/home.png";
 
 class App extends Component {
   constructor(props) {
@@ -27,7 +28,12 @@ class App extends Component {
     const { data } = this.state;
     console.log("github data -->", data);
 
-    return <div onClick={this.handleAlert}>Click me!</div>;
+    return (
+      <div>
+        <div onClick={this.handleAlert}>Click me!</div>
+        <img src={imageHome} height="75px" width="75px" />
+      </div>
+    );
   }
 }
 

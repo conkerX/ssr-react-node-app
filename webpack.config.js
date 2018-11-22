@@ -73,12 +73,52 @@ const serverConfig = {
   output: {
     path: __dirname,
     filename: "server.min.js",
-    publicPath: "/"
+    publicPath: "/static/"
   },
   module: {
-    rules: [{ test: /\.(js)$/, use: "babel-loader" }]
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader"
+        }
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "html-loader"
+          }
+        ]
+      },
+      {
+        test: /\.(s*)css$/,
+        use: ["style-loader", "css-loader", "sass-loader"]
+      },
+      {
+        test: /\.(png|jp(e*)g|svg|gif)$/,
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 8000, // Convert images < 8kb to base64 strings
+              name: "images/[hash]-[name].[ext]"
+            }
+          }
+        ]
+      }
+    ]
   },
   plugins: [
+    new HtmlWebPackPlugin({
+      template: "./src/browser/index.html",
+      filename: "./index.html"
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name].[hash].css",
+      chunkFilename: "[id].[hash].css"
+    }),
     new webpack.DefinePlugin({
       __isBrowser__: false
     })
