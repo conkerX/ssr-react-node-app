@@ -58,7 +58,9 @@ class App extends Component {
 
   handleLeft() {
     this.state.imageIndex === 0
-      ? this.setState({ imageIndex: this.state.images.length - 1 })
+      ? this.setState(state => {
+          return { imageIndex: this.state.images.length - 1 };
+        })
       : this.setState(state => {
           return {
             imageIndex: state.imageIndex - 1
@@ -68,11 +70,11 @@ class App extends Component {
 
   handleRight() {
     this.state.imageIndex === this.state.images.length - 1
-      ? this.setState({ imageIndex: 0 })
+      ? this.setState(state => {
+          return { imageIndex: 0 };
+        })
       : this.setState(state => {
-          return {
-            imageIndex: state.imageIndex + 1
-          };
+          return { imageIndex: state.imageIndex + 1 };
         });
   }
 
