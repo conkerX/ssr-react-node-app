@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-import imageHome from "../../images/home.png";
+// import appStyles from "../../styles/appStyles.css";
+
+import ModuleOne from "../presentational/ModuleOne.js";
+import ModuleTwo from "../presentational/ModuleTwo.js";
+import ModuleThree from "../presentational/ModuleThree.js";
 
 class App extends Component {
   constructor(props) {
@@ -14,24 +18,77 @@ class App extends Component {
     }
 
     this.state = {
-      data
+      data,
+      images: [
+        {
+          original:
+            "https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png",
+          caption: "bulbasaur",
+          id: 0
+        },
+        {
+          original:
+            "https://assets.pokemon.com/assets/cms2/img/pokedex/full/004.png",
+          caption: "charmander",
+          id: 1
+        },
+        {
+          original:
+            "https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png",
+          caption: "squirtle",
+          id: 2
+        }
+      ],
+      imageIndex: 0
     };
 
     this.handleAlert = this.handleAlert.bind(this);
+    this.handleLeft = this.handleLeft.bind(this);
+    this.handleRight = this.handleRight.bind(this);
+  }
+
+  componentDidMount() {
+    /* Quick workaround for getting styles to load after initial ssr */
+    require("../../styles/appStyles.css");
   }
 
   handleAlert() {
     alert("Hooray! You clicked the div!");
   }
 
+  handleLeft() {
+    this.state.imageIndex === 0
+      ? this.setState({ imageIndex: this.state.images.length - 1 })
+      : this.setState(state => {
+          return {
+            imageIndex: state.imageIndex - 1
+          };
+        });
+  }
+
+  handleRight() {
+    this.state.imageIndex === this.state.images.length - 1
+      ? this.setState({ imageIndex: 0 })
+      : this.setState(state => {
+          return {
+            imageIndex: state.imageIndex + 1
+          };
+        });
+  }
+
   render() {
-    const { data } = this.state;
-    console.log("github data -->", data);
+    const { data, images, imageIndex } = this.state;
 
     return (
-      <div>
-        <div onClick={this.handleAlert}>Click me!</div>
-        <img src={imageHome} height="75px" width="75px" />
+      <div id="app-container">
+        <ModuleOne />
+        <ModuleTwo
+          images={images}
+          imageIndex={imageIndex}
+          handleLeft={this.handleLeft}
+          handleRight={this.handleRight}
+        />
+        <ModuleThree data={data} handleAlert={this.handleAlert} />
       </div>
     );
   }

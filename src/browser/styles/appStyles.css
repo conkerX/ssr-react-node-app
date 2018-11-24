@@ -1,0 +1,56 @@
+#app-container {
+  border: 5px solid black;
+}
+
+#module-one-container {
+  border: 2px solid blue;
+  margin: 10px;
+}
+
+#module-two-container {
+  border: 2px solid purple;
+  margin: 10px;
+}
+
+#left-arrow-container {
+  display: flex;
+  align-items: center;
+}
+
+#carousel {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.image-container {
+  position: relative;
+}
+
+.image-tag {
+  width: 100%;
+}
+
+.caption-block {
+  position: absolute;
+  bottom: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+  width: 100%;
+}
+
+#right-arrow-container {
+  display: flex;
+  align-items: center;
+}
+
+#module-three-container {
+  border: 2px solid red;
+  margin: 10px;
+}
+
+#alert-div {
+  border: 1px dotted orange;
+  margin: 10px;
+}
