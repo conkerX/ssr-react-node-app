@@ -1,4 +1,10 @@
 import React, { Component } from "react";
+
+const isBrowser = typeof window !== "undefined";
+const appStyles = __isBrowser__
+  ? require("../../styles/appStyles.css")
+  : undefined;
+
 // import appStyles from "../../styles/appStyles.css";
 
 import ModuleOne from "../presentational/ModuleOne.js";
@@ -49,7 +55,7 @@ class App extends Component {
 
   componentDidMount() {
     /* Quick workaround for getting styles to load after initial ssr */
-    require("../../styles/appStyles.css");
+    // require("../../styles/appStyles.css");
   }
 
   handleAlert() {
