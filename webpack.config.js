@@ -35,45 +35,21 @@ const browserConfig = {
           }
         ]
       },
-      // {
-      //   test: /\.(s*)css$/,
-      //   use: ["style-loader", "css-loader", "sass-loader"]
-      // },
       {
         test: /\.(s*)css$/,
-        use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              publicPath: "/static/"
-            }
-          },
-          "css-loader",
-          "sass-loader"
-        ]
+        use: ["style-loader", "css-loader", "sass-loader"]
       },
       // {
       //   test: /\.(s*)css$/,
-      //   // use: ["style-loader", "css-loader", "sass-loader"]
       //   use: [
       //     {
-      //       loader: devMode ? "style-loader" : MiniCssExtractPlugin.loader
-      //       // options: {
-      //       //   publicPath: "/static/"
-      //       // }
-      //     },
-      //     {
-      //       loader: "css-loader",
+      //       loader: MiniCssExtractPlugin.loader,
       //       options: {
       //         publicPath: "/static/"
       //       }
       //     },
-      //     {
-      //       loader: "sass-loader",
-      //       options: {
-      //         publicPath: "/static/"
-      //       }
-      //     }
+      //     "css-loader",
+      //     "sass-loader"
       //   ]
       // },
       {
@@ -96,7 +72,7 @@ const browserConfig = {
       filename: "./index.html"
     }),
     new MiniCssExtractPlugin({
-      filename: "css/[name].[hash].css",
+      filename: "public/css/[name].[hash].css",
       chunkFilename: "[id].[hash].css"
     }),
     new webpack.DefinePlugin({
@@ -144,34 +120,9 @@ const serverConfig = {
               publicPath: "/static/"
             }
           },
-          "css-loader",
-          "sass-laoder"
+          "css-loader"
         ]
       },
-      // {
-      //   test: /\.(s*)css$/,
-      //   // use: ["style-loader", "css-loader", "sass-loader"]
-      //   use: [
-      //     {
-      //       loader: devMode ? "style-loader" : MiniCssExtractPlugin.loader,
-      //       options: {
-      //         publicPath: "/static/"
-      //       }
-      //     },
-      //     {
-      //       loader: "css-loader",
-      //       options: {
-      //         publicPath: "/static/"
-      //       }
-      //     },
-      //     {
-      //       loader: "sass-loader",
-      //       options: {
-      //         publicPath: "/static/"
-      //       }
-      //     }
-      //   ]
-      // },
       {
         test: /\.(png|jp(e*)g|svg|gif)$/,
         use: [
@@ -192,7 +143,7 @@ const serverConfig = {
       filename: "./index.html"
     }),
     new MiniCssExtractPlugin({
-      filename: "css/[name].[hash].css",
+      filename: "public/css/[name].[hash].css",
       chunkFilename: "[id].[hash].css"
     }),
     new webpack.DefinePlugin({
